@@ -31,6 +31,7 @@
       display: block;
       background-color: #eaecf5;
       border-radius: 2px;
+      animation: loading 2s linear infinite;
     }
 
     .character--loading .mdl-card__title-text:empty::after {
@@ -43,6 +44,48 @@
       /* CSS hack for a square box */
       height: 0;
       padding-bottom: 100%;
+    }
+
+    .mdl-cell:nth-child(1) :empty::after,
+    .mdl-cell:nth-child(1) ::after {
+      animation-delay: 100ms;
+    }
+
+    .mdl-cell:nth-child(2) :empty::after,
+    .mdl-cell:nth-child(2) ::after {
+      animation-delay: 200ms;
+    }
+
+    .mdl-cell:nth-child(3) :empty::after,
+    .mdl-cell:nth-child(3) ::after {
+      animation-delay: 300ms;
+    }
+
+    .mdl-cell:nth-child(4) :empty::after,
+    .mdl-cell:nth-child(4) ::after {
+      animation-delay: 400ms;
+    }
+
+    .mdl-cell:nth-child(5) :empty::after,
+    .mdl-cell:nth-child(5) ::after {
+      animation-delay: 500ms;
+    }
+
+    .mdl-cell:nth-child(6) :empty::after,
+    .mdl-cell:nth-child(6) ::after {
+      animation-delay: 600ms;
+    }
+
+    @keyframes loading {
+      40% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.2;
+      }
+      60% {
+        opacity: 1;
+      }
     }
   </style>
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -156,6 +199,8 @@
       title.textContent = data.name;
       img.src = data.image;
       img.alt = data.name;
+
+      card.classList.remove('character--loading');
     });
 
     // // Send a fetch for each character and store all returned Promises.
