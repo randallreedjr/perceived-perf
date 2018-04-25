@@ -241,6 +241,10 @@
     };
 
     const updateCardBackground = card => {
+      if (card.classList.contains('photo-card--loaded')){
+        return;
+      };
+
       const title = card.querySelector('.mdl-card__title');
       title.style.backgroundImage = `url(${title.dataset.backgroundImage})`;
 
