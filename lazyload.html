@@ -228,11 +228,14 @@
   </div>
 
   <script type="text/javascript">
-    const createPreloadLink = href => {
+    const createPreloadLink = (href, listener) => {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
       link.href = href;
+
+      // load event means browser is done
+      link.addEventListener('load', listener);
 
       document.head.appendChild(link);
     };
@@ -260,9 +263,9 @@
     cards.forEach(card => {
       // add preload
       const title = card.querySelector('.mdl-card__title');
-      createPreloadLink(title.dataset.backgroundImage);
       // attach intersection observer
-      observer.observe(card);
+      const observeCard = () => observer.observe(card);
+      createPreloadLink(title.dataset.backgroundImage, observeCard);
     });
   </script>
 </body>
