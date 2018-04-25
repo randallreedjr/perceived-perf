@@ -237,10 +237,18 @@
       document.head.appendChild(link);
     };
 
+    const updateCardBackground = card => {
+      const title = card.querySelector('.mdl-card__title');
+      title.style.backgroundImage = `url(${title.dataset.backgroundImage})`;
+
+      card.classList.add('photo-card--loaded');
+    };
+
     const handler = entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
-          console.log(`${entry.target.classList} is on screen!`);
+          // console.log(`${entry.target.classList} is on screen!`);
+          updateCardBackground(entry.target);
         }
       });
     };
