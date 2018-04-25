@@ -226,6 +226,24 @@
       </div>
     </main>
   </div>
+
+  <script type="text/javascript">
+    const handler = entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+          console.log(`${entry.target.classList} is on screen!`);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handler, { /*options*/ threshold: 0.25 });
+    // Threshold throttles calls to handler
+
+    const cards = document.querySelectorAll('.photo-card'); //array-like object
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+  </script>
 </body>
 
 </html>
