@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Perceived Perforamance Workshop @ #GenerateConf</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <style type="text/css">
+    .mdl-card {
+      width: 100%;
+    }
+
+    .offline {
+      padding: 4em;
+    }
+
+    .offline__title {
+      font_size: 2em;
+    }
+  </style>
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">#GenerateConf</span>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href="/index.html">Home</a>
+          <a class="mdl-navigation__link" href="/lazyload.html">Lazy Loading</a>
+          <a class="mdl-navigation__link" href="/skeleton.html">Skeleton Pattern</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">#GenerateConf</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="/index.html">Home</a>
+        <a class="mdl-navigation__link" href="/lazyload.html">Lazy Loading</a>
+        <a class="mdl-navigation__link" href="/skeleton.html">Skeleton Pattern</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+          <div class="offline mdl-color--white mdl-shadow--2dp content md">
+            <h1 class="offline_title">You're offline</h1>
+            <p>
+              You can load this page once you're back online
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="text/javascript">
+    if ('serviceWorker' in navigator) {
+      // Service worker needs to be at root of wherever it's installed
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => {
+          console.log(`Service worker registered with scope ${reg.scope}`);
+        })
+        .catch(error => {
+          console.error('Service worker failed', error);
+        });
+    }
+  </script>
+</body>
+
+</html>
