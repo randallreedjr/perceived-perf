@@ -228,6 +228,15 @@
   </div>
 
   <script type="text/javascript">
+    const createPreloadLink = href => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = href;
+
+      document.head.appendChild(link);
+    };
+
     const handler = entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
@@ -241,6 +250,10 @@
 
     const cards = document.querySelectorAll('.photo-card'); //array-like object
     cards.forEach(card => {
+      // add preload
+      const title = card.querySelector('.mdl-card__title');
+      createPreloadLink(title.dataset.backgroundImage);
+      // attach intersection observer
       observer.observe(card);
     });
   </script>
