@@ -124,6 +124,19 @@
       createPreloadLink(title.dataset.backgroundImage, observeCard);
     });
   </script>
+
+  <script type="text/javascript">
+    if ('serviceWorker' in navigator) {
+      // Service worker needs to be at root of wherever it's installed
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => {
+          console.log(`Service worker registered with scope ${reg.scope}`);
+        })
+        .catch(error => {
+          console.error('Service worker failed', error);
+        });
+    }
+  </script>
 </body>
 
 </html>
